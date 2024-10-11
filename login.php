@@ -2,9 +2,9 @@
 session_start();
 
 // Database connection
-$server_name = "localhost";
+$server_name = "db";
 $username = "root";
-$password = "";
+$password = "root";
 $database_name = "tnpothole";
 
 $conn = mysqli_connect($server_name, $username, $password, $database_name);
