@@ -1,7 +1,7 @@
 <?php
-$servername = "localhost"; // or your server name
+$servername = "db"; // or your server name
 $username = "root"; // your database username
-$password = ""; // your database password
+$password = "root"; // your database password
 $dbname = "tnpothole"; // your database name
 
 // Create connection
