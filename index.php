@@ -1,5 +1,5 @@
 <?php
-$server_name="host.docker.internal";
+$server_name="localhost";
 $username="root";
 $password="";
 $database_name="tnpothole";
