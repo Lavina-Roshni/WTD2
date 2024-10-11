@@ -1,5 +1,5 @@
 <?php
-$server_name="localhost";
+$server_name="db";
 $username="root";
 $password="";
 $database_name="tnpothole";
