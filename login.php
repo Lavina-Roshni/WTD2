@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Verify the password (assuming the password is hashed in the database)
             if (password_verify($password, $user['password'])) {
                 $_SESSION["emailid"] = $email; // Set session variable
-                header("Location: sample.html"); // Redirect to home page
+                header("Location: index.html"); // Redirect to home page
                 exit;
             } else {
                 echo "Invalid login credentials.";
