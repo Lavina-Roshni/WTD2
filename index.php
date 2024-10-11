@@ -1,10 +1,10 @@
 <?php
-$server_name="localhost";
+$server_name="host.docker.internal";
 $username="root";
 $password="";
 $database_name="tnpothole";
 
-$conn=mysqli_connect($server_name,$username,$password,$database_name);
+$conn = mysqli_connect($server_name,$username,$password,$database_name);
 //now check the connection
 if(!$conn)
 {
