@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Pothole</title>
+    <link rel="stylesheet" href="https://openlayers.org/en/v6.14.1/css/ol.css" type="text/css">
+    <style>
+        /* Body background and font color */
+        body {
+            background-color: #363636;
+            color: #555;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Main container */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #D9DDDC;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+
+        /* Form container */
+        .form-container {
+            text-align: center;
+        }
+
+        /* Input fields */
+        input[type="text"],
+        input[type="file"],
+        .button {
+            width: calc(100% - 20px);
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+            display: inline-block;
+            text-decoration: none;
+            background-color: #48494B;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-align: center;
+        }
+
+        .button:hover {
+            background-color: #363636;
+        }
+
+        /* Map container */
+        #map {
+            width: 100%;
+            height: 400px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="text-align: center;">Report Pothole</h1>
+        <div class="form-container">
+            <!-- Link to map.html for more details -->
+            <a href="map.html" class="button">Open Map</a>
+
+            <!-- Map Container -->
+            <div id="map"></div>
+
+            <!-- Description and Image Inputs -->
+            <form id="locationForm" action="complaint.php" method="post" enctype="multipart/form-data">
+                <input type="hidden" id="latitude" name="latitude">
+                <input type="hidden" id="longitude" name="longitude"><br>
+                <input type="text" name="description" placeholder="Description" required><br>
+                <input type="file" name="images[]" multiple><br>
+                <div class="button-container">
+                   <input type="submit" class="button" value="Report Pothole">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://openlayers.org/en/v6.14.1/build/ol.js"></script>
+    <script>
+        // Create a map instance
+        var map = new ol.Map({
+            target: 'map',
+            layers: [
+                new ol.layer.Tile({
+                    source: new ol.source.OSM() // OpenStreetMap as the base layer
+                })
+            ],
+            view: new ol.View({
+                center: ol.proj.fromLonLat([0, 0]), // Center map at (0, 0)
+                zoom: 2 // Initial zoom level
+            })
+        });
+
+        // Get GPS location
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                console.error("Geolocation is not supported by this browser.");
+            }
+        }
+
+        // Show GPS position on the map
+        function showPosition(position) {
+            var latitude = position.coords.latitude;
+            var longitude = position.coords.longitude;
+
+            // Update hidden form fields with latitude and longitude
+            document.getElementById("latitude").value = latitude;
+            document.getElementById("longitude").value = longitude;
+
+            // Center map to the user's location
+            map.getView().setCenter(ol.proj.fromLonLat([longitude, latitude]));
+            map.getView().setZoom(14); // Adjust zoom level
+
+            // Add marker to the map
+            var marker = new ol.Feature({
+                geometry: new ol.geom.Point(ol.proj.fromLonLat([longitude, latitude]))
+            });
+            var markerLayer = new ol.layer.Vector({
+                source: new ol.source.Vector({
+                    features: [marker]
+                })
+            });
+            map.addLayer(markerLayer);
+        }
+
+        // Call getLocation function when the page loads
+        getLocation();
+    </script>
+</body>
+</html>

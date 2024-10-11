@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Login and Signup Form</title>
+   <style>
+      body {
+         font-family: Arial, sans-serif;
+         margin: 0;
+         padding: 0;
+         background: linear-gradient(rgb(255, 143, 143), rgb(203, 208, 255));
+         color: white;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         height: 100vh;
+      }
+
+      .container {
+         background: white;
+         color: black;
+         padding: 20px;
+         border-radius: 10px;
+         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .tab {
+         display: flex;
+         justify-content: space-between;
+         margin-bottom: 20px;
+      }
+
+      .tab button {
+         padding: 10px 20px;
+         border: none;
+         border-radius: 10px;
+         cursor: pointer;
+         background: transparent;
+         color: #333;
+         font-size: 1.2em;
+         transition: background 0.3s ease;
+      }
+
+      .tab button:hover {
+         background: #ccc;
+         color: white;
+      }
+
+      .form-title {
+         font-size: 3em;
+         margin-bottom: 20px;
+      }
+
+      .form-content {
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+      }
+
+      .form-input {
+         margin: 10px 0;
+         padding: 10px;
+         border-radius: 10px;
+         border: 1px solid #ccc;
+         font-size: 1.2em;
+         width: 300px;
+         text-align: center;
+      }
+
+      .form-button {
+         margin: 10px 0;
+         padding: 10px;
+         border-radius: 10px;
+         border: 1px solid #ccc;
+         font-size: 1.2em;
+         width: 200px;
+         text-align: center;
+         background: linear-gradient(to right, rgb(255, 143, 143), rgb(203, 208, 255));
+         color: white;
+      }
+   </style>
+</head>
+<body>
+   <div class="container">
+      <div class="tab">
+         <button id="loginTab">Login</button>
+         <button id="signupTab">Signup</button>
+      </div>
+
+      <!-- Login Form -->
+      <form method="POST" action="login.php" id="loginForm">
+         <div class="form-title">Login Form</div>
+         <div class="form-content">
+            <input type="email" class="form-input" name="email" placeholder="Email Address" required>
+            <input type="password" class="form-input" name="password" placeholder="Password" required>
+            <button type="submit" class="form-button" name="login">Login</button>
+         </div>
+      </form>
+
+      <!-- Signup Form -->
+      <form method="POST" action="login.php" id="signupForm" style="display: none;">
+         <div class="form-title">Signup Form</div>
+         <div class="form-content">
+            <input type="email" class="form-input" name="email" placeholder="Email Address" required>
+            <input type="text" class="form-input" name="name" placeholder="Name" required>
+            <input type="password" class="form-input" name="password" placeholder="Password" required>
+            <input type="password" class="form-input" name="confirm_password" placeholder="Confirm Password" required>
+            <select class="form-input" name="district" required>
+               <option value="" disabled selected>District of Tamil Nadu</option>
+               <option value="Ariyalur">Ariyalur</option>
+               <option value="Chengalpattu">Chengalpattu</option>
+               <option value="Chennai">Chennai</option>
+               <option value="Coimbatore">Coimbatore</option>
+               <option value="Cuddalore">Cuddalore</option>
+               <option value="Dharmapuri">Dharmapuri</option>
+               <option value="Dindigul">Dindigul</option>
+               <option value="Erode">Erode</option>
+               <option value="Kallakurichi">Kallakurichi</option>
+               <option value="Kanchipuram">Kanchipuram</option>
+               <option value="Kanyakumari">Kanyakumari</option>
+               <option value="Karur">Karur</option>
+               <option value="Krishnagiri">Krishnagiri</option>
+               <option value="Madurai">Madurai</option>
+               <option value="Mayiladuthurai">Mayiladuthurai</option>
+               <option value="Nagapattinam">Nagapattinam</option>
+               <option value="Namakkal">Namakkal</option>
+               <option value="Nilgiris">Nilgiris</option>
+               <option value="Perambalur">Perambalur</option>
+               <option value="Pudukkottai">Pudukkottai</option>
+               <option value="Ramanathapuram">Ramanathapuram</option>
+               <option value="Ranipet">Ranipet</option>
+               <option value="Salem">Salem</option>
+               <option value="Sivaganga">Sivaganga</option>
+               <option value="Tenkasi">Tenkasi</option>
+               <option value="Thanjavur">Thanjavur</option>
+               <option value="Theni">Theni</option>
+               <option value="Thoothukudi">Thoothukudi</option>
+               <option value="Tiruchirappalli">Tiruchirappalli</option>
+               <option value="Tirunelveli">Tirunelveli</option>
+               <option value="Tirupathur">Tirupathur</option>
+               <option value="Tiruppur">Tiruppur</option>
+               <option value="Tiruvallur">Tiruvallur</option>
+               <option value="Tiruvannamalai">Tiruvannamalai</option>
+               <option value="Tiruvarur">Tiruvarur</option>
+               <option value="Vellore">Vellore</option>
+               <option value="Viluppuram">Viluppuram</option>
+               <option value="Virudhunagar">Virudhunagar</option>
+            </select>
+            
+            <button type="submit" class="form-button" name="save">Signup</button>
+         </div>
+      </form>
+   </div>
+
+   <script>
+      const loginTab = document.getElementById('loginTab');
+      const signupTab = document.getElementById('signupTab');
+      const loginForm = document.getElementById('loginForm');
+      const signupForm = document.getElementById('signupForm');
+
+      // Toggle between login and signup forms
+      loginTab.addEventListener('click', () => {
+         loginForm.style.display = 'flex';
+         signupForm.style.display = 'none';
+      });
+
+      signupTab.addEventListener('click', () => {
+         loginForm.style.display = 'none';
+         signupForm.style.display = 'flex';
+      });
+   </script>
+</body>
+</html>
