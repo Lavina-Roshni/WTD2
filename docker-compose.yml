@@ -5,8 +5,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: tnpothole
-      MYSQL_USER: root
-      MYSQL_PASSWORD: 
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user_password
     ports:
       - "3306:3306"
 
@@ -15,7 +15,7 @@ services:
     environment:
       PMA_HOST: db
       PMA_USER: root
-      PMA_PASSWORD: 
+      PMA_PASSWORD: root
     ports:
       - "8081:80"  # Map phpMyAdmin to a different port to avoid conflicts
     depends_on:
