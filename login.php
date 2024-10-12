@@ -3,7 +3,7 @@ session_start();
 
 // Database connection
 $server_name = "db";
-$username = "root";
+$username = "newuser";
 $password = "root";
 $database_name = "tnpothole";
 
