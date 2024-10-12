@@ -1,7 +1,7 @@
 <?php
 // db_connection.php
 $servername = "db"; // Update if needed
-$username = "root"; // Update if needed
+$username = "newuser"; // Update if needed
 $password = "root"; // Update if needed
 $dbname = "tnpothole"; // Your database name
 
