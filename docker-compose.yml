@@ -14,7 +14,7 @@ services:
     image: phpmyadmin/phpmyadmin
     environment:
       PMA_HOST: db
-      PMA_USER: root
+      PMA_USER: newuser
       PMA_PASSWORD: root
     ports:
       - "8080:80"  # Map phpMyAdmin to a different port to avoid conflicts
