@@ -1,6 +1,6 @@
 <?php
 $servername = "db"; // or your server name
-$username = "root"; // your database username
+$username = "newuser"; // your database username
 $password = "root"; // your database password
 $dbname = "tnpothole"; // your database name
 
