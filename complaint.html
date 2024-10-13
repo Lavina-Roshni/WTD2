@@ -76,13 +76,13 @@
             <div id="map"></div>
 
             <!-- Description and Image Inputs -->
-            <form id="locationForm" action="complaint.php" method="post" enctype="multipart/form-data">
+            <form id="locationForm" method="post" enctype="multipart/form-data">
                 <input type="hidden" id="latitude" name="latitude">
                 <input type="hidden" id="longitude" name="longitude"><br>
                 <input type="text" name="description" placeholder="Description" required><br>
                 <input type="file" name="images[]" multiple><br>
                 <div class="button-container">
-                   <input type="submit" class="button" value="Report Pothole">
+                   <input type="submit" class="button" value="Report Pothole" href="reported.html">
                 </div>
             </form>
         </div>
