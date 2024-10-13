@@ -76,13 +76,13 @@
             <div id="map"></div>
 
             <!-- Description and Image Inputs -->
-            <form id="locationForm">
+            <form id="locationForm" onsubmit="return validateForm()">
                 <input type="hidden" id="latitude" name="latitude">
                 <input type="hidden" id="longitude" name="longitude"><br>
                 <input type="text" name="description" placeholder="Description" required><br>
                 <input type="file" name="images[]" multiple><br>
                 <div class="button-container">
-                 <a href="reported.html" class="button">Report Pothole </a>
+                    <button type="submit" class="button">Report Pothole</button>
                 </div>
             </form>
         </div>
@@ -136,6 +136,17 @@
                 })
             });
             map.addLayer(markerLayer);
+        }
+
+        // Validate form before submission
+        function validateForm() {
+            const description = document.querySelector('input[name="description"]').value.trim();
+            if (description === '') {
+                alert("Please fill out this field.");
+                return false; // Prevent form submission
+            }
+            // If valid, allow form submission
+            return true;
         }
 
         // Call getLocation function when the page loads
